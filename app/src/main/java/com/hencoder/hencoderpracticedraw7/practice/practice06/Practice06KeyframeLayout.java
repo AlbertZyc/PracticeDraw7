@@ -1,5 +1,8 @@
 package com.hencoder.hencoderpracticedraw7.practice.practice06;
 
+import android.animation.Keyframe;
+import android.animation.ObjectAnimator;
+import android.animation.PropertyValuesHolder;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
@@ -40,6 +43,15 @@ public class Practice06KeyframeLayout extends RelativeLayout {
                 // 结束帧：progress 回落到 80
                 // 使用 PropertyValuesHolder.ofKeyframe() 来把关键帧拼接成一个完整的属性动画方案
                 // 使用 ObjectAnimator.ofPropertyValuesHolder() 来创建动画
+                Keyframe keyframe1 = Keyframe.ofFloat(0,0);
+                Keyframe keyframe2 = Keyframe.ofFloat(0.5f,100);
+                Keyframe keyframe3 = Keyframe.ofFloat(1,60);
+                PropertyValuesHolder holder = PropertyValuesHolder.ofKeyframe("progress",keyframe1,keyframe2,keyframe3);
+
+                ObjectAnimator animator = ObjectAnimator.ofPropertyValuesHolder(view,holder);
+
+                animator.setDuration(3000);
+                animator.start();
             }
         });
     }
